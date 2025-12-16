@@ -1,10 +1,12 @@
 # EPICS-Projects
 
-Learning with the Experimental Physics and Industrial Control System on Windows 11
+Learning with the Experimental Physics and Industrial Control System on **Windows 11**
 
 Most of these instructions are found in the [documentation](https://docs.epics-controls.org/en/latest/index.html#), but this is a quick summary of what was needed on my system (i5-10400 @ 2.90GHz)
 
-## Building EPICS base
+## Setup
+
+### Building EPICS base
 
 1. [Download latest EPICS base release from GitHub](https://github.com/epics-base/epics-base/releases)
     - Unzip into working directory
@@ -22,7 +24,7 @@ Most of these instructions are found in the [documentation](https://docs.epics-c
 1. `gmake -j6` (My computer has 6 cores)
 1. Add “bin\windows-x64” full directory to PATH and as env var EPICS_BASE
 
-## Create and Run IOC
+### Create and Run IOC
 
 1. Create working directory and open PowerShell at root
 1. Create the app directory: `perl $env:EPICS_BASE\makeBaseApp.pl -t example MyProject`
@@ -39,3 +41,20 @@ Most of these instructions are found in the [documentation](https://docs.epics-c
 ## Testing
 
 - [python-ca-examples](./python-ca-examples/)
+
+## Goals
+
+EPICS is typically used in conjunction with NICOS, which is a control system for neutron scattering experiments. Data is then posted to kafka and later read into scipp before anaysis and storage in a database.
+
+For this project, I would like to create a simple GUI for monitoring and controlling the EPICS IOC. Then, I want to create some simulated CA clients on different devices (RaspberryPi, Laptop, Phone). The UI will show device states (Online/Error/Offline).
+
+Then, I want to create some mock data. This can be done on the same Windows PC for ease of development.
+
+- Vacuum pressures
+- RF signals to simulate a klystron gallery
+- Cryogenic temp sensors with PID setpoint control
+- Refrigeriant loops
+- Beam dump analyzer
+- Magnetron control for collimating proton beam
+
+This will likely all be accomplished with python, but I may get fancy and either access the IOC database directly or wrap the IOC header files in a WASM app or FFI for a different frontend.
