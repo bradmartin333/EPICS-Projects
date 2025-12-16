@@ -1,0 +1,7 @@
+[project]
+name = "python-ca-examples"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "pyepics>=3.5.8",
+]

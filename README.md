@@ -26,11 +26,9 @@ Most of these instructions are found in the [documentation](https://docs.epics-c
 1. Create the app files `perl $env:EPICS_BASE\makeBaseApp.pl -i -t example MyProject`
 1. Close PowerShell and use Command Prompt from now on
     - Make the same way in the above section (#4 - #7)
-1. Start IOC: `C:\Users\bradm\Downloads\EPICS_PROJECTS\MyProject\bin\windows-x64\MyProject.exe .\iocBoot\iocMyProject\st.cmd`
+1. Start IOC: `path\to\MyProject\bin\windows-x64\MyProject.exe .\iocBoot\iocMyProject\st.cmd`
 1. List channels: `epics> dbl`
-
-## Test Channel Access Client
-1. Open PowerShell while IOC is running
+1. Open a new PowerShell while IOC is running
 1. Test connection caget: `bradm:aiExample`
 1. Test writing data: `caput bradm:aSubExample 42`
 1. Test monitor with write: `camonitor bradm:aSubExample`
