@@ -10,3 +10,11 @@ Mock control of proton beam dump with debug visualization
 ## Usage
 
 `uv run main.py`
+
+## Demo
+
+Trying to reduce RMS radius of artificially off-center beam at dump location by adjusting steering magnets.
+
+Effective magnet kick shown as yellow vector.
+
+![Demo](./beam_dump_dim.gif)

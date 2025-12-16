@@ -235,7 +235,7 @@ def draw_ui(
     target_dist: TargetDistribution,
 ):
     rl.draw_text(
-        "Particle Accelerator Beamline Control",
+        "Beamline Control Simulator",
         10,
         10,
         24,
@@ -257,6 +257,8 @@ def draw_ui(
     rl.draw_text("R: Reset selected magnet", 15, y_pos, 14, rl.RAYWHITE)
     y_pos += 20
     rl.draw_text("0: Reset all magnets", 15, y_pos, 14, rl.RAYWHITE)
+    y_pos += 20
+    rl.draw_text("C: Clear particles", 15, y_pos, 14, rl.RAYWHITE)
     y_pos += 20
     rl.draw_text("D: Dump params to console (JSON)", 15, y_pos, 14, rl.RAYWHITE)
 
@@ -359,6 +361,8 @@ def dump_system_state(
 
 
 def main():
+    rl.set_config_flags(rl.ConfigFlags.FLAG_BORDERLESS_WINDOWED_MODE)
+    rl.set_config_flags(rl.ConfigFlags.FLAG_WINDOW_UNDECORATED)
     rl.init_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Beamline Control Simulator")
     rl.set_target_fps(60)
 
@@ -400,10 +404,12 @@ def main():
                     magnet.kick_y = 0.0
 
         if rl.is_key_pressed(rl.KeyboardKey.KEY_ZERO):
-            particles.clear()
             for magnet in STEERING_MAGNETS:
                 magnet.kick_x = 0.0
                 magnet.kick_y = 0.0
+
+        if rl.is_key_pressed(rl.KeyboardKey.KEY_C):
+            particles.clear()
 
         if rl.is_key_pressed(rl.KeyboardKey.KEY_D):
             dump_system_state(STEERING_MAGNETS, target_dist)
