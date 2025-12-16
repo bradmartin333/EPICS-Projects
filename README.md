@@ -54,5 +54,6 @@ Then, I want to create some mock data. This can be done on the same Windows PC f
 - Refrigeriant loops
 - Steering magnet simulation
 - [Beam position monitor](./beam_dump/)
+- RPM of tungsten target's motor
 
 This will likely all be accomplished with python, but I may get fancy and either access the IOC database directly or wrap the IOC header files in a WASM app or FFI for a different frontend.
