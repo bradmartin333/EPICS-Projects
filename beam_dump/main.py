@@ -135,9 +135,9 @@ def calculate_beam_trajectory(
     start_x: float = 0.2,
     start_y: float = 0.6,
     emittance_x: float = 2.0,
-    emittance_y: float = 2.0,
-    magnet_jitter_x: float = 0.01,
-    magnet_jitter_y: float = 0.01,
+    emittance_y: float = 4.0,
+    magnet_jitter_x: float = 0.05,
+    magnet_jitter_y: float = 0.5,
 ) -> tuple:
     x = start_x
     y = start_y
