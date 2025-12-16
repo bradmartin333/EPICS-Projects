@@ -215,9 +215,8 @@ def main():
     except Exception as e:
         print(f"\nError: {e}")
         print("\nMake sure:")
-        print("1. PyEPICS is installed: pip install pyepics")
-        print("2. MyProject IOC is running")
-        print("3. PV names match your hostname")
+        print("1. MyProject IOC is running")
+        print("2. PV names match your hostname")
 
 
 if __name__ == "__main__":

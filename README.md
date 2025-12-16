@@ -1,9 +1,11 @@
 # EPICS-Projects
+
 Learning with the Experimental Physics and Industrial Control System on Windows 11
 
 Most of these instructions are found in the [documentation](https://docs.epics-controls.org/en/latest/index.html#), but this is a quick summary of what was needed on my system (i5-10400 @ 2.90GHz)
 
 ## Building EPICS base
+
 1. [Download latest EPICS base release from GitHub](https://github.com/epics-base/epics-base/releases)
     - Unzip into working directory
 1. [Download latest Strawberry Perl .msi](https://strawberryperl.com/)
@@ -21,6 +23,7 @@ Most of these instructions are found in the [documentation](https://docs.epics-c
 1. Add “bin\windows-x64” full directory to PATH and as env var EPICS_BASE
 
 ## Create and Run IOC
+
 1. Create working directory and open PowerShell at root
 1. Create the app directory: `perl $env:EPICS_BASE\makeBaseApp.pl -t example MyProject`
 1. Create the app files `perl $env:EPICS_BASE\makeBaseApp.pl -i -t example MyProject`
@@ -32,3 +35,7 @@ Most of these instructions are found in the [documentation](https://docs.epics-c
 1. Test connection caget: `bradm:aiExample`
 1. Test writing data: `caput bradm:aSubExample 42`
 1. Test monitor with write: `camonitor bradm:aSubExample`
+
+## Testing
+
+- [python-ca-examples](./python-ca-examples/)
