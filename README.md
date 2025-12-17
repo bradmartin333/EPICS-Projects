@@ -52,8 +52,7 @@ Then, I want to create some mock data. This can be done on the same Windows PC f
 - RF signals to simulate a klystron gallery
 - Cryogenic temp sensors with PID setpoint control
 - Refrigeriant loops
-- Steering magnet simulation
 - [Beam position monitor](./beam_dump/)
-- RPM of tungsten target's motor
+- [Tungsten target monitor](./tungsten_target/)
 
 This will likely all be accomplished with python, but I may get fancy and either access the IOC database directly or wrap the IOC header files in a WASM app or FFI for a different frontend.
