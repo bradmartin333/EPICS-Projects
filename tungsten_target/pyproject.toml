@@ -4,4 +4,6 @@ version = "0.1.0"
 description = "Mock tungsten target monitor"
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "pyepics>=3.5.9",
+]

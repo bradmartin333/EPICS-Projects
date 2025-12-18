@@ -9,6 +9,7 @@ Mock control of tungsten target with visualization
 
 ## Usage
 
-`uv run main.py`
+1. `uv run main.py`
+1. monitor example: `camonitor bradm:TARGET:TEMP_AVG bradm:TARGET:POWER bradm:TARGET:ROT_SPEED`, where bradm is the IOC_PREFIX
 
-![Demo](./tungsten_target.gif)
+![Demo](./demo.gif)
