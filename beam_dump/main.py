@@ -2,9 +2,12 @@ import pyray as rl
 import random
 import math
 import json
+import concurrent.futures
 from collections import deque
 from dataclasses import dataclass, asdict
 from typing import List
+from datetime import datetime
+from epics import caput
 
 
 @dataclass
@@ -59,6 +62,32 @@ class SteeringMagnet:
 SCREEN_WIDTH = 2000
 SCREEN_HEIGHT = 900
 CAMERA_DISTANCE = 50.0
+IOC_PREFIX = "bradm"
+PVS = {
+    "mean_x": f"{IOC_PREFIX}:DUMP:MEAN_X",
+    "mean_y": f"{IOC_PREFIX}:DUMP:MEAN_Y",
+    "std_x": f"{IOC_PREFIX}:DUMP:STD_X",
+    "std_y": f"{IOC_PREFIX}:DUMP:STD_Y",
+    "rms_radius": f"{IOC_PREFIX}:DUMP:RMS_RADIUS",
+    "max_dev": f"{IOC_PREFIX}:DUMP:MAX_DEV",
+    "particles": f"{IOC_PREFIX}:DUMP:PARTICLES",
+    "timestamp": f"{IOC_PREFIX}:DUMP:TIMESTAMP",
+    "inj_kick_x": f"{IOC_PREFIX}:STEER:INJ:KICK_X",
+    "inj_kick_y": f"{IOC_PREFIX}:STEER:INJ:KICK_Y",
+    "inj_strength": f"{IOC_PREFIX}:STEER:INJ:STRENGTH",
+    "h1_kick_x": f"{IOC_PREFIX}:STEER:H1:KICK_X",
+    "h1_kick_y": f"{IOC_PREFIX}:STEER:H1:KICK_Y",
+    "h1_strength": f"{IOC_PREFIX}:STEER:H1:STRENGTH",
+    "v1_kick_x": f"{IOC_PREFIX}:STEER:V1:KICK_X",
+    "v1_kick_y": f"{IOC_PREFIX}:STEER:V1:KICK_Y",
+    "v1_strength": f"{IOC_PREFIX}:STEER:V1:STRENGTH",
+    "h2_kick_x": f"{IOC_PREFIX}:STEER:H2:KICK_X",
+    "h2_kick_y": f"{IOC_PREFIX}:STEER:H2:KICK_Y",
+    "h2_strength": f"{IOC_PREFIX}:STEER:H2:STRENGTH",
+    "final_kick_x": f"{IOC_PREFIX}:STEER:FINAL:KICK_X",
+    "final_kick_y": f"{IOC_PREFIX}:STEER:FINAL:KICK_Y",
+    "final_strength": f"{IOC_PREFIX}:STEER:FINAL:STRENGTH",
+}
 
 STEERING_MAGNETS = [
     SteeringMagnet(0.0, "Injector Corrector", strength=0.8),
@@ -360,6 +389,38 @@ def dump_system_state(
     print(json.dumps(state, indent=2))
 
 
+def publish_to_epics(target_dist: TargetDistribution, magnets: List[SteeringMagnet]):
+    try:
+        caput(PVS["mean_x"], target_dist.mean_x, wait=False)
+        caput(PVS["mean_y"], target_dist.mean_y, wait=False)
+        caput(PVS["std_x"], target_dist.std_x, wait=False)
+        caput(PVS["std_y"], target_dist.std_y, wait=False)
+        caput(PVS["rms_radius"], target_dist.rms_radius, wait=False)
+        caput(PVS["max_dev"], target_dist.max_deviation, wait=False)
+        caput(PVS["particles"], target_dist.total_particles, wait=False)
+        caput(
+            PVS["timestamp"], datetime.now().strftime("%Y-%m-%d %H:%M:%S"), wait=False
+        )
+        caput(PVS["inj_kick_x"], magnets[0].kick_x, wait=False)
+        caput(PVS["inj_kick_y"], magnets[0].kick_y, wait=False)
+        caput(PVS["inj_strength"], magnets[0].strength, wait=False)
+        caput(PVS["h1_kick_x"], magnets[1].kick_x, wait=False)
+        caput(PVS["h1_kick_y"], magnets[1].kick_y, wait=False)
+        caput(PVS["h1_strength"], magnets[1].strength, wait=False)
+        caput(PVS["v1_kick_x"], magnets[2].kick_x, wait=False)
+        caput(PVS["v1_kick_y"], magnets[2].kick_y, wait=False)
+        caput(PVS["v1_strength"], magnets[2].strength, wait=False)
+        caput(PVS["h2_kick_x"], magnets[3].kick_x, wait=False)
+        caput(PVS["h2_kick_y"], magnets[3].kick_y, wait=False)
+        caput(PVS["h2_strength"], magnets[3].strength, wait=False)
+        caput(PVS["final_kick_x"], magnets[4].kick_x, wait=False)
+        caput(PVS["final_kick_y"], magnets[4].kick_y, wait=False)
+        caput(PVS["final_strength"], magnets[4].strength, wait=False)
+    except Exception as e:
+        print(f"\nWarning: Could not publish to EPICS: {e}")
+        pass
+
+
 def main():
     rl.set_config_flags(rl.ConfigFlags.FLAG_BORDERLESS_WINDOWED_MODE)
     rl.set_config_flags(rl.ConfigFlags.FLAG_WINDOW_UNDECORATED)
@@ -369,6 +430,9 @@ def main():
     camera_3d = Camera3D()
     selected_magnet_idx = 0
     target_dist = TargetDistribution()
+    epics_executor = concurrent.futures.ThreadPoolExecutor()
+    last_publish_time = 0.0
+    publish_interval = 0.5
 
     while not rl.window_should_close():
         camera_3d.update()
@@ -425,6 +489,11 @@ def main():
         particles.append((px, py, dump_magnet.z_position, distance))
 
         target_dist.update(particles)
+
+        current_time = rl.get_time()
+        if current_time - last_publish_time >= publish_interval:
+            epics_executor.submit(publish_to_epics, target_dist, STEERING_MAGNETS)
+            last_publish_time = current_time
 
         rl.begin_drawing()
         rl.clear_background(rl.BLACK)

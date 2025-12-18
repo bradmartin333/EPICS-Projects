@@ -90,7 +90,7 @@ def main():
     simulator = TargetSimulator()
     epics_executor = concurrent.futures.ThreadPoolExecutor()
     last_publish_time = 0
-    publish_interval = 0.5  # Publish to EPICS every 0.5 seconds
+    publish_interval = 0.5
 
     try:
         while True:
