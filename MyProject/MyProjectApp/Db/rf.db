@@ -1,0 +1,283 @@
+# RF System Database - Klystron Gallery
+# 5 klystrons for particle acceleration
+# Monitoring forward/reflected power, phase, and status
+
+# Klystron 1
+record(ai, "$(user):RF:KLY1:PWR_FWD") {
+    field(DESC, "Klystron 1 Forward Power")
+    field(EGU,  "MW")
+    field(HOPR, "10")
+    field(LOPR, "0")
+    field(PREC, "3")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):RF:KLY1:PWR_REF") {
+    field(DESC, "Klystron 1 Reflected Power")
+    field(EGU,  "kW")
+    field(HOPR, "500")
+    field(LOPR, "0")
+    field(PREC, "2")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):RF:KLY1:PHASE") {
+    field(DESC, "Klystron 1 Phase")
+    field(EGU,  "deg")
+    field(HOPR, "360")
+    field(LOPR, "0")
+    field(PREC, "2")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):RF:KLY1:FREQ") {
+    field(DESC, "Klystron 1 Frequency")
+    field(EGU,  "MHz")
+    field(HOPR, "3000")
+    field(LOPR, "2800")
+    field(PREC, "3")
+    field(SCAN, "1 second")
+}
+
+record(bi, "$(user):RF:KLY1:STATUS") {
+    field(DESC, "Klystron 1 Status")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(VAL,  "1")
+}
+
+record(calc, "$(user):RF:KLY1:VSWR") {
+    field(DESC, "Klystron 1 VSWR")
+    field(CALC, "(1+SQRT(B/A))/(1-SQRT(B/A))")
+    field(INPA, "$(user):RF:KLY1:PWR_FWD CP")
+    field(INPB, "$(user):RF:KLY1:PWR_REF CP")
+    field(PREC, "2")
+}
+
+# Klystron 2
+record(ai, "$(user):RF:KLY2:PWR_FWD") {
+    field(DESC, "Klystron 2 Forward Power")
+    field(EGU,  "MW")
+    field(HOPR, "10")
+    field(LOPR, "0")
+    field(PREC, "3")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):RF:KLY2:PWR_REF") {
+    field(DESC, "Klystron 2 Reflected Power")
+    field(EGU,  "kW")
+    field(HOPR, "500")
+    field(LOPR, "0")
+    field(PREC, "2")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):RF:KLY2:PHASE") {
+    field(DESC, "Klystron 2 Phase")
+    field(EGU,  "deg")
+    field(HOPR, "360")
+    field(LOPR, "0")
+    field(PREC, "2")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):RF:KLY2:FREQ") {
+    field(DESC, "Klystron 2 Frequency")
+    field(EGU,  "MHz")
+    field(HOPR, "3000")
+    field(LOPR, "2800")
+    field(PREC, "3")
+    field(SCAN, "1 second")
+}
+
+record(bi, "$(user):RF:KLY2:STATUS") {
+    field(DESC, "Klystron 2 Status")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(VAL,  "1")
+}
+
+record(calc, "$(user):RF:KLY2:VSWR") {
+    field(DESC, "Klystron 2 VSWR")
+    field(CALC, "(1+SQRT(B/A))/(1-SQRT(B/A))")
+    field(INPA, "$(user):RF:KLY2:PWR_FWD CP")
+    field(INPB, "$(user):RF:KLY2:PWR_REF CP")
+    field(PREC, "2")
+}
+
+# Klystron 3
+record(ai, "$(user):RF:KLY3:PWR_FWD") {
+    field(DESC, "Klystron 3 Forward Power")
+    field(EGU,  "MW")
+    field(HOPR, "10")
+    field(LOPR, "0")
+    field(PREC, "3")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):RF:KLY3:PWR_REF") {
+    field(DESC, "Klystron 3 Reflected Power")
+    field(EGU,  "kW")
+    field(HOPR, "500")
+    field(LOPR, "0")
+    field(PREC, "2")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):RF:KLY3:PHASE") {
+    field(DESC, "Klystron 3 Phase")
+    field(EGU,  "deg")
+    field(HOPR, "360")
+    field(LOPR, "0")
+    field(PREC, "2")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):RF:KLY3:FREQ") {
+    field(DESC, "Klystron 3 Frequency")
+    field(EGU,  "MHz")
+    field(HOPR, "3000")
+    field(LOPR, "2800")
+    field(PREC, "3")
+    field(SCAN, "1 second")
+}
+
+record(bi, "$(user):RF:KLY3:STATUS") {
+    field(DESC, "Klystron 3 Status")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(VAL,  "1")
+}
+
+record(calc, "$(user):RF:KLY3:VSWR") {
+    field(DESC, "Klystron 3 VSWR")
+    field(CALC, "(1+SQRT(B/A))/(1-SQRT(B/A))")
+    field(INPA, "$(user):RF:KLY3:PWR_FWD CP")
+    field(INPB, "$(user):RF:KLY3:PWR_REF CP")
+    field(PREC, "2")
+}
+
+# Klystron 4
+record(ai, "$(user):RF:KLY4:PWR_FWD") {
+    field(DESC, "Klystron 4 Forward Power")
+    field(EGU,  "MW")
+    field(HOPR, "10")
+    field(LOPR, "0")
+    field(PREC, "3")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):RF:KLY4:PWR_REF") {
+    field(DESC, "Klystron 4 Reflected Power")
+    field(EGU,  "kW")
+    field(HOPR, "500")
+    field(LOPR, "0")
+    field(PREC, "2")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):RF:KLY4:PHASE") {
+    field(DESC, "Klystron 4 Phase")
+    field(EGU,  "deg")
+    field(HOPR, "360")
+    field(LOPR, "0")
+    field(PREC, "2")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):RF:KLY4:FREQ") {
+    field(DESC, "Klystron 4 Frequency")
+    field(EGU,  "MHz")
+    field(HOPR, "3000")
+    field(LOPR, "2800")
+    field(PREC, "3")
+    field(SCAN, "1 second")
+}
+
+record(bi, "$(user):RF:KLY4:STATUS") {
+    field(DESC, "Klystron 4 Status")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(VAL,  "1")
+}
+
+record(calc, "$(user):RF:KLY4:VSWR") {
+    field(DESC, "Klystron 4 VSWR")
+    field(CALC, "(1+SQRT(B/A))/(1-SQRT(B/A))")
+    field(INPA, "$(user):RF:KLY4:PWR_FWD CP")
+    field(INPB, "$(user):RF:KLY4:PWR_REF CP")
+    field(PREC, "2")
+}
+
+# Klystron 5
+record(ai, "$(user):RF:KLY5:PWR_FWD") {
+    field(DESC, "Klystron 5 Forward Power")
+    field(EGU,  "MW")
+    field(HOPR, "10")
+    field(LOPR, "0")
+    field(PREC, "3")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):RF:KLY5:PWR_REF") {
+    field(DESC, "Klystron 5 Reflected Power")
+    field(EGU,  "kW")
+    field(HOPR, "500")
+    field(LOPR, "0")
+    field(PREC, "2")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):RF:KLY5:PHASE") {
+    field(DESC, "Klystron 5 Phase")
+    field(EGU,  "deg")
+    field(HOPR, "360")
+    field(LOPR, "0")
+    field(PREC, "2")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):RF:KLY5:FREQ") {
+    field(DESC, "Klystron 5 Frequency")
+    field(EGU,  "MHz")
+    field(HOPR, "3000")
+    field(LOPR, "2800")
+    field(PREC, "3")
+    field(SCAN, "1 second")
+}
+
+record(bi, "$(user):RF:KLY5:STATUS") {
+    field(DESC, "Klystron 5 Status")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(VAL,  "1")
+}
+
+record(calc, "$(user):RF:KLY5:VSWR") {
+    field(DESC, "Klystron 5 VSWR")
+    field(CALC, "(1+SQRT(B/A))/(1-SQRT(B/A))")
+    field(INPA, "$(user):RF:KLY5:PWR_FWD CP")
+    field(INPB, "$(user):RF:KLY5:PWR_REF CP")
+    field(PREC, "2")
+}
+
+# RF System Overall Statistics
+record(calc, "$(user):RF:TOTAL_POWER") {
+    field(DESC, "Total RF Power")
+    field(CALC, "A+B+C+D+E")
+    field(INPA, "$(user):RF:KLY1:PWR_FWD CP")
+    field(INPB, "$(user):RF:KLY2:PWR_FWD CP")
+    field(INPC, "$(user):RF:KLY3:PWR_FWD CP")
+    field(INPD, "$(user):RF:KLY4:PWR_FWD CP")
+    field(INPE, "$(user):RF:KLY5:PWR_FWD CP")
+    field(EGU,  "MW")
+    field(PREC, "3")
+}
+
+record(bi, "$(user):RF:SYSTEM_STATUS") {
+    field(DESC, "RF System Status")
+    field(ZNAM, "FAULT")
+    field(ONAM, "OK")
+    field(VAL,  "1")
+}

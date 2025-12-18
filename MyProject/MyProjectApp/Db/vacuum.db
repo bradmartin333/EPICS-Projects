@@ -1,0 +1,210 @@
+# Vacuum System Database
+# 20 vacuum pressure gauges distributed throughout the system
+# Pressure readings in Torr with realistic ranges
+
+# Injector Section Gauges (1-4)
+record(ai, "$(user):VAC:INJ:P01") {
+    field(DESC, "Injector Gauge 1")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-4")
+    field(LOPR, "1e-10")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+record(ai, "$(user):VAC:INJ:P02") {
+    field(DESC, "Injector Gauge 2")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-4")
+    field(LOPR, "1e-10")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+record(ai, "$(user):VAC:INJ:P03") {
+    field(DESC, "Injector Gauge 3")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-4")
+    field(LOPR, "1e-10")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+record(ai, "$(user):VAC:INJ:P04") {
+    field(DESC, "Injector Gauge 4")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-4")
+    field(LOPR, "1e-10")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+# Accelerator Section Gauges (5-12)
+record(ai, "$(user):VAC:ACC:P01") {
+    field(DESC, "Accelerator Gauge 1")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-5")
+    field(LOPR, "1e-11")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+record(ai, "$(user):VAC:ACC:P02") {
+    field(DESC, "Accelerator Gauge 2")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-5")
+    field(LOPR, "1e-11")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+record(ai, "$(user):VAC:ACC:P03") {
+    field(DESC, "Accelerator Gauge 3")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-5")
+    field(LOPR, "1e-11")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+record(ai, "$(user):VAC:ACC:P04") {
+    field(DESC, "Accelerator Gauge 4")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-5")
+    field(LOPR, "1e-11")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+record(ai, "$(user):VAC:ACC:P05") {
+    field(DESC, "Accelerator Gauge 5")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-5")
+    field(LOPR, "1e-11")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+record(ai, "$(user):VAC:ACC:P06") {
+    field(DESC, "Accelerator Gauge 6")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-5")
+    field(LOPR, "1e-11")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+record(ai, "$(user):VAC:ACC:P07") {
+    field(DESC, "Accelerator Gauge 7")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-5")
+    field(LOPR, "1e-11")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+record(ai, "$(user):VAC:ACC:P08") {
+    field(DESC, "Accelerator Gauge 8")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-5")
+    field(LOPR, "1e-11")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+# Beamline Section Gauges (13-16)
+record(ai, "$(user):VAC:BL:P01") {
+    field(DESC, "Beamline Gauge 1")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-6")
+    field(LOPR, "1e-11")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+record(ai, "$(user):VAC:BL:P02") {
+    field(DESC, "Beamline Gauge 2")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-6")
+    field(LOPR, "1e-11")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+record(ai, "$(user):VAC:BL:P03") {
+    field(DESC, "Beamline Gauge 3")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-6")
+    field(LOPR, "1e-11")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+record(ai, "$(user):VAC:BL:P04") {
+    field(DESC, "Beamline Gauge 4")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-6")
+    field(LOPR, "1e-11")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+# Target Area Gauges (17-20)
+record(ai, "$(user):VAC:TGT:P01") {
+    field(DESC, "Target Area Gauge 1")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-5")
+    field(LOPR, "1e-10")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+record(ai, "$(user):VAC:TGT:P02") {
+    field(DESC, "Target Area Gauge 2")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-5")
+    field(LOPR, "1e-10")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+record(ai, "$(user):VAC:TGT:P03") {
+    field(DESC, "Target Area Gauge 3")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-5")
+    field(LOPR, "1e-10")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+record(ai, "$(user):VAC:TGT:P04") {
+    field(DESC, "Target Area Gauge 4")
+    field(EGU,  "Torr")
+    field(HOPR, "1e-5")
+    field(LOPR, "1e-10")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+# Vacuum System Status
+record(calc, "$(user):VAC:AVG_PRESSURE") {
+    field(DESC, "Average System Pressure")
+    field(CALC, "(A+B+C+D+E+F+G+H)/8")
+    field(INPA, "$(user):VAC:INJ:P01 CP")
+    field(INPB, "$(user):VAC:ACC:P01 CP")
+    field(INPC, "$(user):VAC:ACC:P04 CP")
+    field(INPD, "$(user):VAC:BL:P01 CP")
+    field(INPE, "$(user):VAC:BL:P04 CP")
+    field(INPF, "$(user):VAC:TGT:P01 CP")
+    field(INPG, "$(user):VAC:TGT:P04 CP")
+    field(INPH, "$(user):VAC:INJ:P04 CP")
+    field(EGU,  "Torr")
+    field(PREC, "2")
+}
+
+record(bi, "$(user):VAC:STATUS") {
+    field(DESC, "Vacuum System Status")
+    field(ZNAM, "FAULT")
+    field(ONAM, "OK")
+    field(VAL,  "1")
+}

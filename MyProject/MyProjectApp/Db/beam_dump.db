@@ -1,0 +1,241 @@
+# Beam Dump Database
+# Monitors beam distribution at the dump location
+# Maps to TargetDistribution dataclass from beam_dump/main.py
+
+# Beam Position Statistics
+record(ai, "$(user):DUMP:MEAN_X") {
+    field(DESC, "Mean X Position")
+    field(EGU,  "m")
+    field(HOPR, "2.0")
+    field(LOPR, "-2.0")
+    field(PREC, "4")
+    field(SCAN, "Passive")
+}
+
+record(ai, "$(user):DUMP:MEAN_Y") {
+    field(DESC, "Mean Y Position")
+    field(EGU,  "m")
+    field(HOPR, "2.0")
+    field(LOPR, "-2.0")
+    field(PREC, "4")
+    field(SCAN, "Passive")
+}
+
+# Beam Size Statistics
+record(ai, "$(user):DUMP:STD_X") {
+    field(DESC, "X Standard Deviation")
+    field(EGU,  "m")
+    field(HOPR, "1.0")
+    field(LOPR, "0")
+    field(PREC, "4")
+    field(SCAN, "Passive")
+}
+
+record(ai, "$(user):DUMP:STD_Y") {
+    field(DESC, "Y Standard Deviation")
+    field(EGU,  "m")
+    field(HOPR, "1.0")
+    field(LOPR, "0")
+    field(PREC, "4")
+    field(SCAN, "Passive")
+}
+
+record(ai, "$(user):DUMP:RMS_RADIUS") {
+    field(DESC, "RMS Beam Radius")
+    field(EGU,  "m")
+    field(HOPR, "1.0")
+    field(LOPR, "0")
+    field(PREC, "4")
+    field(SCAN, "Passive")
+    field(HIGH, "0.5")
+    field(HSV,  "MINOR")
+}
+
+record(ai, "$(user):DUMP:MAX_DEV") {
+    field(DESC, "Maximum Deviation")
+    field(EGU,  "m")
+    field(HOPR, "2.0")
+    field(LOPR, "0")
+    field(PREC, "4")
+    field(SCAN, "Passive")
+    field(HIGH, "1.0")
+    field(HSV,  "MAJOR")
+}
+
+# Particle Count
+record(longin, "$(user):DUMP:PARTICLES") {
+    field(DESC, "Total Particles at Dump")
+    field(HOPR, "10000")
+    field(LOPR, "0")
+    field(SCAN, "Passive")
+}
+
+# Beam Quality Metrics
+record(calc, "$(user):DUMP:ELLIPTICITY") {
+    field(DESC, "Beam Ellipticity")
+    field(CALC, "B/A")
+    field(INPA, "$(user):DUMP:STD_X CP")
+    field(INPB, "$(user):DUMP:STD_Y CP")
+    field(PREC, "3")
+}
+
+record(calc, "$(user):DUMP:OFFSET") {
+    field(DESC, "Beam Offset from Center")
+    field(CALC, "SQRT(A*A+B*B)")
+    field(INPA, "$(user):DUMP:MEAN_X CP")
+    field(INPB, "$(user):DUMP:MEAN_Y CP")
+    field(EGU,  "m")
+    field(PREC, "4")
+}
+
+# Steering Magnets (5 correctors)
+record(ao, "$(user):STEER:INJ:KICK_X") {
+    field(DESC, "Injector H-Kick")
+    field(EGU,  "mrad")
+    field(DRVH, "20")
+    field(DRVL, "-20")
+    field(PREC, "2")
+    field(VAL,  "0")
+}
+
+record(ao, "$(user):STEER:INJ:KICK_Y") {
+    field(DESC, "Injector V-Kick")
+    field(EGU,  "mrad")
+    field(DRVH, "20")
+    field(DRVL, "-20")
+    field(PREC, "2")
+    field(VAL,  "0")
+}
+
+record(ao, "$(user):STEER:INJ:STRENGTH") {
+    field(DESC, "Injector Strength")
+    field(DRVH, "2.0")
+    field(DRVL, "0")
+    field(PREC, "2")
+    field(VAL,  "0.8")
+}
+
+record(ao, "$(user):STEER:H1:KICK_X") {
+    field(DESC, "H-Corrector 1 X-Kick")
+    field(EGU,  "mrad")
+    field(DRVH, "20")
+    field(DRVL, "-20")
+    field(PREC, "2")
+    field(VAL,  "0")
+}
+
+record(ao, "$(user):STEER:H1:KICK_Y") {
+    field(DESC, "H-Corrector 1 Y-Kick")
+    field(EGU,  "mrad")
+    field(DRVH, "20")
+    field(DRVL, "-20")
+    field(PREC, "2")
+    field(VAL,  "0")
+}
+
+record(ao, "$(user):STEER:H1:STRENGTH") {
+    field(DESC, "H-Corrector 1 Strength")
+    field(DRVH, "2.0")
+    field(DRVL, "0")
+    field(PREC, "2")
+    field(VAL,  "1.0")
+}
+
+record(ao, "$(user):STEER:V1:KICK_X") {
+    field(DESC, "V-Corrector 1 X-Kick")
+    field(EGU,  "mrad")
+    field(DRVH, "20")
+    field(DRVL, "-20")
+    field(PREC, "2")
+    field(VAL,  "0")
+}
+
+record(ao, "$(user):STEER:V1:KICK_Y") {
+    field(DESC, "V-Corrector 1 Y-Kick")
+    field(EGU,  "mrad")
+    field(DRVH, "20")
+    field(DRVL, "-20")
+    field(PREC, "2")
+    field(VAL,  "0")
+}
+
+record(ao, "$(user):STEER:V1:STRENGTH") {
+    field(DESC, "V-Corrector 1 Strength")
+    field(DRVH, "2.0")
+    field(DRVL, "0")
+    field(PREC, "2")
+    field(VAL,  "1.0")
+}
+
+record(ao, "$(user):STEER:H2:KICK_X") {
+    field(DESC, "H-Corrector 2 X-Kick")
+    field(EGU,  "mrad")
+    field(DRVH, "20")
+    field(DRVL, "-20")
+    field(PREC, "2")
+    field(VAL,  "0")
+}
+
+record(ao, "$(user):STEER:H2:KICK_Y") {
+    field(DESC, "H-Corrector 2 Y-Kick")
+    field(EGU,  "mrad")
+    field(DRVH, "20")
+    field(DRVL, "-20")
+    field(PREC, "2")
+    field(VAL,  "0")
+}
+
+record(ao, "$(user):STEER:H2:STRENGTH") {
+    field(DESC, "H-Corrector 2 Strength")
+    field(DRVH, "2.0")
+    field(DRVL, "0")
+    field(PREC, "2")
+    field(VAL,  "1.2")
+}
+
+record(ao, "$(user):STEER:FINAL:KICK_X") {
+    field(DESC, "Final Corrector X-Kick")
+    field(EGU,  "mrad")
+    field(DRVH, "20")
+    field(DRVL, "-20")
+    field(PREC, "2")
+    field(VAL,  "0")
+}
+
+record(ao, "$(user):STEER:FINAL:KICK_Y") {
+    field(DESC, "Final Corrector Y-Kick")
+    field(EGU,  "mrad")
+    field(DRVH, "20")
+    field(DRVL, "-20")
+    field(PREC, "2")
+    field(VAL,  "0")
+}
+
+record(ao, "$(user):STEER:FINAL:STRENGTH") {
+    field(DESC, "Final Corrector Strength")
+    field(DRVH, "2.0")
+    field(DRVL, "0")
+    field(PREC, "2")
+    field(VAL,  "1.0")
+}
+
+# System Status
+record(bi, "$(user):DUMP:STATUS") {
+    field(DESC, "Beam Dump Status")
+    field(ZNAM, "FAULT")
+    field(ONAM, "OK")
+    field(VAL,  "1")
+}
+
+record(bi, "$(user):STEER:STATUS") {
+    field(DESC, "Steering System Status")
+    field(ZNAM, "FAULT")
+    field(ONAM, "OK")
+    field(VAL,  "1")
+}
+
+# Timestamp for synchronization
+record(stringin, "$(user):DUMP:TIMESTAMP") {
+    field(DESC, "Last Update Timestamp")
+    field(SCAN, "Passive")
+}

@@ -1,0 +1,253 @@
+# Tungsten Target Database
+# Monitors rotating tungsten target for spallation neutron source
+# 36 target segments rotating at 14 Hz
+
+# Target Temperature Monitoring (4 sensors at different positions)
+record(ai, "$(user):TARGET:TEMP1") {
+    field(DESC, "Target Temperature Sensor 1")
+    field(EGU,  "K")
+    field(HOPR, "900")
+    field(LOPR, "300")
+    field(PREC, "1")
+    field(SCAN, ".5 second")
+    field(HIGH, "750")
+    field(HSV,  "MINOR")
+    field(HIHI, "800")
+    field(HHSV, "MAJOR")
+}
+
+record(ai, "$(user):TARGET:TEMP2") {
+    field(DESC, "Target Temperature Sensor 2")
+    field(EGU,  "K")
+    field(HOPR, "900")
+    field(LOPR, "300")
+    field(PREC, "1")
+    field(SCAN, ".5 second")
+    field(HIGH, "750")
+    field(HSV,  "MINOR")
+    field(HIHI, "800")
+    field(HHSV, "MAJOR")
+}
+
+record(ai, "$(user):TARGET:TEMP3") {
+    field(DESC, "Target Temperature Sensor 3")
+    field(EGU,  "K")
+    field(HOPR, "900")
+    field(LOPR, "300")
+    field(PREC, "1")
+    field(SCAN, ".5 second")
+    field(HIGH, "750")
+    field(HSV,  "MINOR")
+    field(HIHI, "800")
+    field(HHSV, "MAJOR")
+}
+
+record(ai, "$(user):TARGET:TEMP4") {
+    field(DESC, "Target Temperature Sensor 4")
+    field(EGU,  "K")
+    field(HOPR, "900")
+    field(LOPR, "300")
+    field(PREC, "1")
+    field(SCAN, ".5 second")
+    field(HIGH, "750")
+    field(HSV,  "MINOR")
+    field(HIHI, "800")
+    field(HHSV, "MAJOR")
+}
+
+# Average Temperature Calculation
+record(calc, "$(user):TARGET:TEMP_AVG") {
+    field(DESC, "Average Target Temperature")
+    field(CALC, "(A+B+C+D)/4")
+    field(INPA, "$(user):TARGET:TEMP1 CP")
+    field(INPB, "$(user):TARGET:TEMP2 CP")
+    field(INPC, "$(user):TARGET:TEMP3 CP")
+    field(INPD, "$(user):TARGET:TEMP4 CP")
+    field(EGU,  "K")
+    field(PREC, "1")
+}
+
+record(calc, "$(user):TARGET:TEMP_MAX") {
+    field(DESC, "Maximum Target Temperature")
+    field(CALC, "MAX(MAX(A,B),MAX(C,D))")
+    field(INPA, "$(user):TARGET:TEMP1 CP")
+    field(INPB, "$(user):TARGET:TEMP2 CP")
+    field(INPC, "$(user):TARGET:TEMP3 CP")
+    field(INPD, "$(user):TARGET:TEMP4 CP")
+    field(EGU,  "K")
+    field(PREC, "1")
+}
+
+# Rotation Monitoring
+record(ai, "$(user):TARGET:ROT_SPEED") {
+    field(DESC, "Target Rotation Speed")
+    field(EGU,  "Hz")
+    field(HOPR, "20")
+    field(LOPR, "0")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+    field(LOW,  "13.5")
+    field(LSV,  "MINOR")
+    field(HIGH, "14.5")
+    field(HSV,  "MINOR")
+}
+
+record(longin, "$(user):TARGET:POSITION") {
+    field(DESC, "Current Target Segment")
+    field(HOPR, "35")
+    field(LOPR, "0")
+    field(SCAN, "Passive")
+}
+
+record(calc, "$(user):TARGET:UPTIME") {
+    field(DESC, "Target Uptime")
+    field(CALC, "A+0.5")
+    field(INPA, "$(user):TARGET:UPTIME")
+    field(EGU,  "s")
+    field(PREC, "1")
+    field(SCAN, ".5 second")
+}
+
+# Cooling System
+record(ai, "$(user):TARGET:COOL_FLOW") {
+    field(DESC, "Cooling Water Flow Rate")
+    field(EGU,  "L/min")
+    field(HOPR, "100")
+    field(LOPR, "0")
+    field(PREC, "1")
+    field(SCAN, ".5 second")
+    field(LOW,  "20")
+    field(LSV,  "MAJOR")
+}
+
+record(ai, "$(user):TARGET:COOL_TEMP_IN") {
+    field(DESC, "Cooling Water Inlet Temp")
+    field(EGU,  "C")
+    field(HOPR, "50")
+    field(LOPR, "0")
+    field(PREC, "1")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):TARGET:COOL_TEMP_OUT") {
+    field(DESC, "Cooling Water Outlet Temp")
+    field(EGU,  "C")
+    field(HOPR, "80")
+    field(LOPR, "0")
+    field(PREC, "1")
+    field(SCAN, ".5 second")
+    field(HIGH, "60")
+    field(HSV,  "MINOR")
+}
+
+record(calc, "$(user):TARGET:COOL_DELTA_T") {
+    field(DESC, "Cooling Delta Temperature")
+    field(CALC, "B-A")
+    field(INPA, "$(user):TARGET:COOL_TEMP_IN CP")
+    field(INPB, "$(user):TARGET:COOL_TEMP_OUT CP")
+    field(EGU,  "C")
+    field(PREC, "1")
+}
+
+# Power Deposition
+record(ai, "$(user):TARGET:POWER") {
+    field(DESC, "Beam Power on Target")
+    field(EGU,  "kW")
+    field(HOPR, "1000")
+    field(LOPR, "0")
+    field(PREC, "1")
+    field(SCAN, ".5 second")
+}
+
+record(calc, "$(user):TARGET:POWER_DENSITY") {
+    field(DESC, "Power Density on Target")
+    field(CALC, "A/0.01")
+    field(INPA, "$(user):TARGET:POWER CP")
+    field(EGU,  "kW/cm2")
+    field(PREC, "2")
+}
+
+# Beam Current Monitoring
+record(ai, "$(user):TARGET:BEAM_CURRENT") {
+    field(DESC, "Beam Current on Target")
+    field(EGU,  "uA")
+    field(HOPR, "100")
+    field(LOPR, "0")
+    field(PREC, "2")
+    field(SCAN, ".5 second")
+}
+
+record(longin, "$(user):TARGET:PULSE_COUNT") {
+    field(DESC, "Total Pulse Count")
+    field(HOPR, "1000000000")
+    field(LOPR, "0")
+    field(SCAN, "Passive")
+}
+
+# Neutron Production (estimated)
+record(ai, "$(user):TARGET:NEUTRON_RATE") {
+    field(DESC, "Neutron Production Rate")
+    field(EGU,  "n/s")
+    field(HOPR, "1e16")
+    field(LOPR, "0")
+    field(PREC, "2")
+    field(SCAN, ".5 second")
+}
+
+# Structural Monitoring
+record(ai, "$(user):TARGET:VIBRATION") {
+    field(DESC, "Target Vibration Level")
+    field(EGU,  "mm/s")
+    field(HOPR, "10")
+    field(LOPR, "0")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+    field(HIGH, "5")
+    field(HSV,  "MINOR")
+}
+
+record(ai, "$(user):TARGET:STRESS") {
+    field(DESC, "Mechanical Stress")
+    field(EGU,  "MPa")
+    field(HOPR, "500")
+    field(LOPR, "0")
+    field(PREC, "1")
+    field(SCAN, "1 second")
+    field(HIGH, "400")
+    field(HSV,  "MAJOR")
+}
+
+# Target Status and Control
+record(bi, "$(user):TARGET:STATUS") {
+    field(DESC, "Target Status")
+    field(ZNAM, "FAULT")
+    field(ONAM, "OK")
+    field(VAL,  "1")
+}
+
+record(bo, "$(user):TARGET:ENABLE") {
+    field(DESC, "Target Enable")
+    field(ZNAM, "DISABLED")
+    field(ONAM, "ENABLED")
+    field(VAL,  "1")
+}
+
+record(bi, "$(user):TARGET:ROTATING") {
+    field(DESC, "Target Rotating")
+    field(ZNAM, "STOPPED")
+    field(ONAM, "ROTATING")
+    field(VAL,  "1")
+}
+
+record(bi, "$(user):TARGET:BEAM_PERMIT") {
+    field(DESC, "Beam Permit Status")
+    field(ZNAM, "NO_PERMIT")
+    field(ONAM, "PERMIT")
+    field(VAL,  "0")
+}
+
+# Timestamp
+record(stringin, "$(user):TARGET:TIMESTAMP") {
+    field(DESC, "Last Update Timestamp")
+    field(SCAN, "Passive")
+}

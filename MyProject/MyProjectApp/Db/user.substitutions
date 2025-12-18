@@ -2,19 +2,22 @@
 #
 # SPDX-License-Identifier: EPICS
 
-# Example substitutions file
-
-file "db/circle.db" {
+file "db/vacuum.db" {
     { user = "bradm" }
 }
 
-file "db/dbExample1.db" {
+file "db/rf.db" {
     { user = "bradm" }
 }
 
-file db/dbExample2.db {
-    pattern { user, no, scan }
-        { "bradm", 1, "1 second" }
-        { "bradm", 2, "2 second" }
-        { "bradm", 3, "5 second" }
+file "db/cryo.db" {
+    { user = "bradm" }
+}
+
+file "db/beam_dump.db" {
+    { user = "bradm" }
+}
+
+file "db/tungsten_target.db" {
+    { user = "bradm" }
 }

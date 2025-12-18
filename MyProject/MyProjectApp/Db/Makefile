@@ -8,12 +8,14 @@ include $(TOP)/configure/CONFIG
 #  ADD MACRO DEFINITIONS BELOW HERE
 
 # Install databases, templates & substitutions like this
-DB += circle.db
-DB += dbExample1.db
-DB += dbExample2.db
-DB += MyProjectVersion.db
+DB += beam_dump.db
+DB += cryo.db
 DB += dbSubExample.db
+DB += MyProjectVersion.db
+DB += rf.db
+DB += tungsten_target.db
 DB += user.substitutions
+DB += vacuum.db
 
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_TEMPLATE = <templatename>

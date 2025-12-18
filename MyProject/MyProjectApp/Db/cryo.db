@@ -1,0 +1,284 @@
+# Cryogenic System Database
+# Temperature sensors, PID controllers, flow monitoring, and heater control
+# Typical for superconducting accelerator cavities
+
+# Temperature Sensors (6 locations)
+record(ai, "$(user):CRYO:TEMP:CAV1") {
+    field(DESC, "Cavity 1 Temperature")
+    field(EGU,  "K")
+    field(HOPR, "10")
+    field(LOPR, "1.8")
+    field(PREC, "3")
+    field(SCAN, ".5 second")
+    field(HIGH, "4.5")
+    field(HSV,  "MAJOR")
+}
+
+record(ai, "$(user):CRYO:TEMP:CAV2") {
+    field(DESC, "Cavity 2 Temperature")
+    field(EGU,  "K")
+    field(HOPR, "10")
+    field(LOPR, "1.8")
+    field(PREC, "3")
+    field(SCAN, ".5 second")
+    field(HIGH, "4.5")
+    field(HSV,  "MAJOR")
+}
+
+record(ai, "$(user):CRYO:TEMP:CAV3") {
+    field(DESC, "Cavity 3 Temperature")
+    field(EGU,  "K")
+    field(HOPR, "10")
+    field(LOPR, "1.8")
+    field(PREC, "3")
+    field(SCAN, ".5 second")
+    field(HIGH, "4.5")
+    field(HSV,  "MAJOR")
+}
+
+record(ai, "$(user):CRYO:TEMP:SUPPLY") {
+    field(DESC, "Helium Supply Temperature")
+    field(EGU,  "K")
+    field(HOPR, "10")
+    field(LOPR, "1.8")
+    field(PREC, "3")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):CRYO:TEMP:RETURN") {
+    field(DESC, "Helium Return Temperature")
+    field(EGU,  "K")
+    field(HOPR, "15")
+    field(LOPR, "2.0")
+    field(PREC, "3")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):CRYO:TEMP:SHIELD") {
+    field(DESC, "Thermal Shield Temperature")
+    field(EGU,  "K")
+    field(HOPR, "100")
+    field(LOPR, "50")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+}
+
+# PID Setpoints (3 control loops)
+record(ao, "$(user):CRYO:PID1:SP") {
+    field(DESC, "PID Loop 1 Setpoint")
+    field(EGU,  "K")
+    field(DRVH, "4.5")
+    field(DRVL, "2.0")
+    field(PREC, "3")
+    field(VAL,  "2.1")
+}
+
+record(ai, "$(user):CRYO:PID1:RBV") {
+    field(DESC, "PID Loop 1 Readback")
+    field(EGU,  "K")
+    field(PREC, "3")
+    field(INP,  "$(user):CRYO:TEMP:CAV1 CP")
+}
+
+record(ao, "$(user):CRYO:PID1:KP") {
+    field(DESC, "PID Loop 1 Proportional Gain")
+    field(PREC, "3")
+    field(VAL,  "1.0")
+}
+
+record(ao, "$(user):CRYO:PID1:KI") {
+    field(DESC, "PID Loop 1 Integral Gain")
+    field(PREC, "3")
+    field(VAL,  "0.1")
+}
+
+record(ao, "$(user):CRYO:PID1:KD") {
+    field(DESC, "PID Loop 1 Derivative Gain")
+    field(PREC, "3")
+    field(VAL,  "0.01")
+}
+
+record(ao, "$(user):CRYO:PID2:SP") {
+    field(DESC, "PID Loop 2 Setpoint")
+    field(EGU,  "K")
+    field(DRVH, "4.5")
+    field(DRVL, "2.0")
+    field(PREC, "3")
+    field(VAL,  "2.1")
+}
+
+record(ai, "$(user):CRYO:PID2:RBV") {
+    field(DESC, "PID Loop 2 Readback")
+    field(EGU,  "K")
+    field(PREC, "3")
+    field(INP,  "$(user):CRYO:TEMP:CAV2 CP")
+}
+
+record(ao, "$(user):CRYO:PID2:KP") {
+    field(DESC, "PID Loop 2 Proportional Gain")
+    field(PREC, "3")
+    field(VAL,  "1.0")
+}
+
+record(ao, "$(user):CRYO:PID2:KI") {
+    field(DESC, "PID Loop 2 Integral Gain")
+    field(PREC, "3")
+    field(VAL,  "0.1")
+}
+
+record(ao, "$(user):CRYO:PID2:KD") {
+    field(DESC, "PID Loop 2 Derivative Gain")
+    field(PREC, "3")
+    field(VAL,  "0.01")
+}
+
+record(ao, "$(user):CRYO:PID3:SP") {
+    field(DESC, "PID Loop 3 Setpoint")
+    field(EGU,  "K")
+    field(DRVH, "4.5")
+    field(DRVL, "2.0")
+    field(PREC, "3")
+    field(VAL,  "2.1")
+}
+
+record(ai, "$(user):CRYO:PID3:RBV") {
+    field(DESC, "PID Loop 3 Readback")
+    field(EGU,  "K")
+    field(PREC, "3")
+    field(INP,  "$(user):CRYO:TEMP:CAV3 CP")
+}
+
+record(ao, "$(user):CRYO:PID3:KP") {
+    field(DESC, "PID Loop 3 Proportional Gain")
+    field(PREC, "3")
+    field(VAL,  "1.0")
+}
+
+record(ao, "$(user):CRYO:PID3:KI") {
+    field(DESC, "PID Loop 3 Integral Gain")
+    field(PREC, "3")
+    field(VAL,  "0.1")
+}
+
+record(ao, "$(user):CRYO:PID3:KD") {
+    field(DESC, "PID Loop 3 Derivative Gain")
+    field(PREC, "3")
+    field(VAL,  "0.01")
+}
+
+# Flow Monitoring
+record(ai, "$(user):CRYO:FLOW:SUPPLY") {
+    field(DESC, "Helium Supply Flow")
+    field(EGU,  "g/s")
+    field(HOPR, "100")
+    field(LOPR, "0")
+    field(PREC, "2")
+    field(SCAN, ".5 second")
+    field(LOW,  "5.0")
+    field(LSV,  "MAJOR")
+}
+
+record(ai, "$(user):CRYO:FLOW:RETURN") {
+    field(DESC, "Helium Return Flow")
+    field(EGU,  "g/s")
+    field(HOPR, "100")
+    field(LOPR, "0")
+    field(PREC, "2")
+    field(SCAN, ".5 second")
+}
+
+record(calc, "$(user):CRYO:FLOW:DIFF") {
+    field(DESC, "Flow Difference")
+    field(CALC, "A-B")
+    field(INPA, "$(user):CRYO:FLOW:SUPPLY CP")
+    field(INPB, "$(user):CRYO:FLOW:RETURN CP")
+    field(EGU,  "g/s")
+    field(PREC, "2")
+}
+
+# Pressure Monitoring
+record(ai, "$(user):CRYO:PRESS:SUPPLY") {
+    field(DESC, "Supply Pressure")
+    field(EGU,  "bar")
+    field(HOPR, "5")
+    field(LOPR, "0")
+    field(PREC, "2")
+    field(SCAN, ".5 second")
+}
+
+record(ai, "$(user):CRYO:PRESS:RETURN") {
+    field(DESC, "Return Pressure")
+    field(EGU,  "bar")
+    field(HOPR, "2")
+    field(LOPR, "0")
+    field(PREC, "2")
+    field(SCAN, ".5 second")
+}
+
+# Heater Controls
+record(ao, "$(user):CRYO:HTR1:POWER") {
+    field(DESC, "Heater 1 Power")
+    field(EGU,  "W")
+    field(DRVH, "100")
+    field(DRVL, "0")
+    field(PREC, "2")
+    field(VAL,  "0")
+}
+
+record(ao, "$(user):CRYO:HTR2:POWER") {
+    field(DESC, "Heater 2 Power")
+    field(EGU,  "W")
+    field(DRVH, "100")
+    field(DRVL, "0")
+    field(PREC, "2")
+    field(VAL,  "0")
+}
+
+record(ao, "$(user):CRYO:HTR3:POWER") {
+    field(DESC, "Heater 3 Power")
+    field(EGU,  "W")
+    field(DRVH, "100")
+    field(DRVL, "0")
+    field(PREC, "2")
+    field(VAL,  "0")
+}
+
+# Valve Controls
+record(bo, "$(user):CRYO:VALVE:INLET") {
+    field(DESC, "Inlet Valve Control")
+    field(ZNAM, "CLOSED")
+    field(ONAM, "OPEN")
+    field(VAL,  "1")
+}
+
+record(bo, "$(user):CRYO:VALVE:OUTLET") {
+    field(DESC, "Outlet Valve Control")
+    field(ZNAM, "CLOSED")
+    field(ONAM, "OPEN")
+    field(VAL,  "1")
+}
+
+# System Status
+record(calc, "$(user):CRYO:AVG_TEMP") {
+    field(DESC, "Average Cavity Temperature")
+    field(CALC, "(A+B+C)/3")
+    field(INPA, "$(user):CRYO:TEMP:CAV1 CP")
+    field(INPB, "$(user):CRYO:TEMP:CAV2 CP")
+    field(INPC, "$(user):CRYO:TEMP:CAV3 CP")
+    field(EGU,  "K")
+    field(PREC, "3")
+}
+
+record(bi, "$(user):CRYO:STATUS") {
+    field(DESC, "Cryogenic System Status")
+    field(ZNAM, "FAULT")
+    field(ONAM, "OK")
+    field(VAL,  "1")
+}
+
+record(bi, "$(user):CRYO:READY") {
+    field(DESC, "System Ready for Beam")
+    field(ZNAM, "NOT_READY")
+    field(ONAM, "READY")
+    field(VAL,  "0")
+}
