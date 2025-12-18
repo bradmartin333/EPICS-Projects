@@ -2,7 +2,7 @@
 
 - Learning with the Experimental Physics and Industrial Control System
 - Most of these instructions are found in the [documentation](https://docs.epics-controls.org/en/latest/index.html#)
-- See the subdirectories in this repository for more
+- See the [TODO section](#todo) to monitor the progress of this effort
 
 ## Windows 11 Setup
 
@@ -46,13 +46,14 @@ EPICS is typically used in conjunction with NICOS, which is a control system for
 
 For this project, I would like to create a simple GUI for monitoring and controlling the EPICS IOC. Then, I want to create some simulated CA clients on different devices (RaspberryPi, Laptop, Phone). The UI will show device states (Online/Error/Offline).
 
-Then, I want to create some mock data. This can be done on the same Windows PC for ease of development. Not sure how far I will get with this, but I would like to simulate:
+Then, I want to create some mock data. This can be done on the same Windows PC for ease of development. This will likely all be accomplished with python, but I may get fancy and either access the IOC database directly or wrap the IOC header files in a WASM app or FFI for a different frontend.
 
-- Vacuum pressures
-- RF signals to simulate a klystron gallery
-- Cryogenic temp sensors with PID setpoint control
-- Refrigeriant loops
-- [Beam position monitor](./beam_dump/)
-- [Tungsten target monitor](./tungsten_target/)
+### TODO
 
-This will likely all be accomplished with python, but I may get fancy and either access the IOC database directly or wrap the IOC header files in a WASM app or FFI for a different frontend.
+- [ ] Vacuum pressures
+- [ ] RF signals to simulate a klystron gallery
+- [ ] Cryogenic temp sensors with PID setpoint control
+- [ ] Refrigeriant loops
+- [x] [Beam position monitor](./beam_dump/)
+- [x] [Tungsten target monitor](./tungsten_target/)
+- [ ] Monitoring GUI
