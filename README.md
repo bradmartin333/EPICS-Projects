@@ -36,7 +36,7 @@ Freshly imaged system: i5-10400 @ 2.90GHz
 1. Start IOC: `path\to\MyProject\bin\windows-x64\MyProject.exe .\iocBoot\iocMyProject\st.cmd`
 1. List channels: `epics> dbl`
 1. Open a new PowerShell while IOC is running
-1. Test connection caget: `bradm:aiExample`
+1. Test connection: `caget bradm:aiExample`
 1. Test writing data: `caput bradm:aSubExample 42`
 1. Test monitor with write: `camonitor bradm:aSubExample`
 
